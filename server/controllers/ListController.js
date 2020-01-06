@@ -8,7 +8,7 @@ export default class ListController {
       .Router()
       .use(Authorize.authenticated)
       .post("", this.create)
-      // .put("/:id", this.edit)
+      .put("/:id", this.edit)
       // .delete("/:id", this.delete)
       .use(this.defaultRoute);
   }
@@ -22,6 +22,19 @@ export default class ListController {
     try {
       let data = await _listService.create(req.body);
       return res.status(201).send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async edit(req, res, next) {
+    try {
+      let data = await _listService.edit(
+        req.params.id,
+        req.session.uid,
+        req.body
+      );
+      return res.send(data);
     } catch (error) {
       next(error);
     }
