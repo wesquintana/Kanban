@@ -21,6 +21,16 @@ class ListService {
     }
     return data;
   }
+  async delete(id, userId) {
+    let data = await _repository.findOneAndRemove({
+      _id: id,
+      authorId: userId
+    });
+    if (!data) {
+      throw new ApiError("Invalid ID or you do not own this list", 400);
+    }
+    return data;
+  }
 }
 
 const _listService = new ListService();

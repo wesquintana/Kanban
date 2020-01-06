@@ -9,7 +9,7 @@ export default class ListController {
       .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
-      // .delete("/:id", this.delete)
+      .delete("/:id", this.delete)
       .use(this.defaultRoute);
   }
   // this is pretty neat
@@ -35,6 +35,14 @@ export default class ListController {
         req.body
       );
       return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async delete(req, res, next) {
+    try {
+      let data = await _listService.delete(req.params.id, req.session.uid);
+      res.send("Sucessfully Deleted");
     } catch (error) {
       next(error);
     }
