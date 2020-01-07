@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import Axios from "axios";
 import router from "../router/index";
 import AuthService from "../AuthService";
+import boardModule from "./boardModule";
 
 Vue.use(Vuex);
 
@@ -18,20 +19,20 @@ let api = Axios.create({
 });
 
 export default new Vuex.Store({
+  modules: {
+    boardModule
+  },
   state: {
     user: {},
     boards: [],
     activeBoard: {}
   },
   mutations: {
+    setResource(state, payload) {
+      state[payload.resource] = payload.data;
+    },
     setUser(state, user) {
       state.user = user;
-    },
-    setBoards(state, boards) {
-      state.boards = boards;
-    },
-    setActiveBoard(state, board) {
-      state.activeBoard = board;
     },
     addBoard(state, board) {
       console.log("added boad", board);
@@ -69,29 +70,11 @@ export default new Vuex.Store({
       } catch (e) {
         console.warn(e.message);
       }
-    },
+    }
     //#endregion
 
     //#region -- BOARDS --
-    getBoards({ commit, dispatch }) {
-      api.get("boards").then(res => {
-        commit("setBoards", res.data);
-      });
-    },
-    addBoard({ commit, dispatch }, boardData) {
-      api
-        .post("boards", boardData)
-        .then(serverBoard => {
-          commit("addBoard", serverBoard.data);
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    },
-    async getBoardById({ commit, dispatch }, id) {
-      let data = await api.get("boards/" + id);
-      commit("setActiveBoard", data.data);
-    }
+
     //#endregion
 
     //#region -- LISTS --
