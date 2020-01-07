@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import List from "../models/List";
+import Task from "../models/Task";
 import ApiError from "../utils/ApiError";
 
 const _repository = mongoose.model("Task", Task);

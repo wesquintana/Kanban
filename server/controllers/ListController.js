@@ -1,4 +1,5 @@
 import _listService from "../services/ListService";
+import _taskService from "../services/TaskService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
 
@@ -9,6 +10,7 @@ export default class ListController {
       .use(Authorize.authenticated)
       .post("", this.create)
       .put("/:id", this.edit)
+      .get("/:id/tasks", this.getTasksByListId)
       .delete("/:id", this.delete)
       .use(this.defaultRoute);
   }
@@ -33,6 +35,17 @@ export default class ListController {
         req.params.id,
         req.session.uid,
         req.body
+      );
+      return res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+  async getTasksByListId(req, res, next) {
+    try {
+      let data = await _taskService.getTasksByListId(
+        req.params.id,
+        req.session.uid
       );
       return res.send(data);
     } catch (error) {
