@@ -4,6 +4,7 @@ import Axios from "axios";
 import router from "../router/index";
 import AuthService from "../AuthService";
 import boardModule from "./boardModule";
+import listModule from "./listModule";
 
 Vue.use(Vuex);
 
@@ -20,12 +21,14 @@ let api = Axios.create({
 
 export default new Vuex.Store({
   modules: {
-    boardModule
+    boardModule,
+    listModule
   },
   state: {
     user: {},
     boards: [],
-    activeBoard: {}
+    activeBoard: {},
+    lists: []
   },
   mutations: {
     setResource(state, payload) {
@@ -38,6 +41,9 @@ export default new Vuex.Store({
       console.log("added boad", board);
       state.activeBoard = board;
       state.boards.push(board);
+    },
+    addList(state, list) {
+      state.lists.push(list);
     }
   },
   actions: {
