@@ -4,7 +4,7 @@ import ApiError from "../utils/ApiError";
 
 const _repository = mongoose.model("Task", Task);
 
-class ListService {
+class TaskService {
   async create(rawData) {
     let data = await _repository.create(rawData);
     return data;
@@ -17,7 +17,7 @@ class ListService {
       { new: true }
     );
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this list", 400);
+      throw new ApiError("Invalid ID or you do not own this task", 400);
     }
     return data;
   }
@@ -27,7 +27,7 @@ class ListService {
       authorId: userId
     });
     if (!data) {
-      throw new ApiError("Invalid ID or you do not own this list", 400);
+      throw new ApiError("Invalid ID or you do not own this task", 400);
     }
     return data;
   }
@@ -40,5 +40,5 @@ class ListService {
   }
 }
 
-const _listService = new ListService();
-export default _listService;
+const _taskService = new TaskService();
+export default _taskService;
