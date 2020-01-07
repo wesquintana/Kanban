@@ -13,7 +13,7 @@
               required
             />
           </div>
-          <button class="btn button btn-primary">New List</button>
+          <button class="btn button btn-primary">New Task</button>
         </form>
       </div>
     </div>
@@ -26,13 +26,16 @@
 export default {
   name: "List",
   props: ["listData"],
+  mounted() {
+    this.$store.dispatch("getTasksByListId", this.listData._id);
+  },
   data() {
     return {
       newTask: {
         description: "",
         listId: this.listData._id,
         authorId: this.$store.state.user._id,
-        boardId: this.boardId
+        boardId: this.listData.boardId
       }
     };
   },

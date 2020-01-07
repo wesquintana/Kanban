@@ -5,7 +5,7 @@ import router from "../router/index";
 import AuthService from "../AuthService";
 import boardModule from "./boardModule";
 import listModule from "./listModule";
-
+import taskModule from "./taskModule";
 Vue.use(Vuex);
 
 //Allows axios to work locally or live
@@ -22,13 +22,15 @@ let api = Axios.create({
 export default new Vuex.Store({
   modules: {
     boardModule,
-    listModule
+    listModule,
+    taskModule
   },
   state: {
     user: {},
     boards: [],
     activeBoard: {},
-    lists: []
+    lists: [],
+    tasks: []
   },
   mutations: {
     setResource(state, payload) {
@@ -38,12 +40,14 @@ export default new Vuex.Store({
       state.user = user;
     },
     addBoard(state, board) {
-      console.log("added boad", board);
       state.activeBoard = board;
       state.boards.push(board);
     },
     addList(state, list) {
       state.lists.push(list);
+    },
+    addTask(state, task) {
+      state.tasks.push(task);
     }
   },
   actions: {
