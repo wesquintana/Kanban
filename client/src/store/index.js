@@ -34,6 +34,8 @@ export default new Vuex.Store({
       state.activeBoard = board;
     },
     addBoard(state, board) {
+      console.log("added boad", board);
+      state.activeBoard = board;
       state.boards.push(board);
     }
   },
@@ -77,10 +79,14 @@ export default new Vuex.Store({
       });
     },
     addBoard({ commit, dispatch }, boardData) {
-      api.post("boards", boardData).then(serverBoard => {
-        commit("addBoard", serverBoard.data);
-        commit("setActiveBoard", serverBoard.data);
-      });
+      api
+        .post("boards", boardData)
+        .then(serverBoard => {
+          commit("addBoard", serverBoard.data);
+        })
+        .catch(err => {
+          console.error(err);
+        });
     },
     async getBoardById({ commit, dispatch }, id) {
       let data = await api.get("boards/" + id);

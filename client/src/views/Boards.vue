@@ -32,13 +32,13 @@ export default {
     }
   },
   methods: {
-    async addBoard() {
-      await this.$store.dispatch("addBoard", this.newBoard);
+    addBoard() {
+      this.$store.dispatch("addBoard", this.newBoard);
+      let activeBoardId = this.$store.state.activeBoard._id;
       this.newBoard = { title: "", description: "" };
-      debugger;
       this.$router.push({
         name: "board",
-        params: { boardId: this.$store.state.activeBoard._id }
+        params: { boardId: activeBoardId }
       });
     }
   }
