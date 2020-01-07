@@ -43,7 +43,6 @@ export default class BoardsController {
     }
   }
   async getListsByBoardId(req, res, next) {
-    console.log("made it to get lists by board id");
     try {
       let data = await _listService.getListsByBoardId(
         req.params.id,

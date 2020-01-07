@@ -38,8 +38,11 @@ server.use("/account", new UserController().router);
 //YOUR ROUTES HERE!!!!!!
 import BoardController from "./controllers/BoardController";
 import ListController from "./controllers/ListController";
+import TaskController from "./controllers/TaskController";
+
 server.use("/api/boards", new BoardController().router);
 server.use("/api/lists", new ListController().router);
+server.use("/api/tasks", new TaskController().router);
 
 //NOTE Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {
