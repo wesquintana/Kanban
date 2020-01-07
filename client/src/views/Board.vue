@@ -22,12 +22,24 @@
         </form>
       </div>
     </div>
+    <div class="row">
+      <list-component
+        class="col-4 custom-list-item"
+        v-for="list in lists"
+        :key="list._id"
+        :listData="list"
+      />
+    </div>
   </main>
 </template>
 
 <script>
+import listComponent from "@/components/List";
 export default {
   name: "board",
+  components: {
+    listComponent
+  },
   data() {
     return {
       newList: {
@@ -39,6 +51,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getBoardById", this.$route.params.boardId);
+    this.$store.dispatch("getListsByBoardId", this.$route.params.boardId);
   },
   methods: {
     addList() {
@@ -50,6 +63,9 @@ export default {
   computed: {
     board() {
       return this.$store.state.activeBoard;
+    },
+    lists() {
+      return this.$store.state.lists;
     }
   },
   props: ["boardId"]
