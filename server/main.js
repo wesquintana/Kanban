@@ -39,11 +39,12 @@ server.use("/account", new UserController().router);
 import BoardController from "./controllers/BoardController";
 import ListController from "./controllers/ListController";
 import TaskController from "./controllers/TaskController";
+import CommentController from "./controllers/CommentController";
 
 server.use("/api/boards", new BoardController().router);
 server.use("/api/lists", new ListController().router);
 server.use("/api/tasks", new TaskController().router);
-
+server.use("/api/comments", new CommentController().router);
 //NOTE Default error handler, catches all routes with an error attached
 server.use((error, req, res, next) => {
   res.status(error.status || 400).send({ error: { message: error.message } });

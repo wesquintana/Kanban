@@ -1,4 +1,3 @@
-import _taskService from "../services/TaskService";
 import _commentService from "../services/CommentService";
 import express from "express";
 import { Authorize } from "../middleware/authorize.js";
@@ -8,7 +7,6 @@ export default class ListController {
     this.router = express
       .Router()
       .use(Authorize.authenticated)
-      .get("/:id/comments", this.getCommentsByTaskId)
       .post("", this.create)
       .put("/:id", this.edit)
       .delete("/:id", this.delete)
@@ -19,17 +17,10 @@ export default class ListController {
   defaultRoute(req, res, next) {
     next({ status: 404, message: "No Such Route" });
   }
-  async getCommentsByTaskId(req, res, next) {
-    try {
-      let data = await _commentService.getCommentByTaskId(req.params.id);
-      return res.send(data);
-    } catch (error) {
-      next(error);
-    }
-  }
+
   async create(req, res, next) {
     try {
-      let data = await _taskService.create(req.body);
+      let data = await _commentService.create(req.body);
       return res.status(201).send(data);
     } catch (error) {
       next(error);
@@ -38,11 +29,7 @@ export default class ListController {
 
   async edit(req, res, next) {
     try {
-      let data = await _taskService.edit(
-        req.params.id,
-        req.session.uid,
-        req.body
-      );
+      let data = await _commentService.edit(req.params.id, req.body);
       return res.send(data);
     } catch (error) {
       next(error);
@@ -50,7 +37,7 @@ export default class ListController {
   }
   async delete(req, res, next) {
     try {
-      let data = await _taskService.delete(req.params.id, req.session.uid);
+      let data = await _commentService.delete(req.params.id);
       res.send("Sucessfully Deleted");
     } catch (error) {
       next(error);
