@@ -18,11 +18,12 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-10 m-auto"></div>
+      <task-component v-for="task in tasks" :key="task._id" :taskData="task" class="col-10 m-auto" />
     </div>
   </div>
 </template>
 <script>
+import taskComponent from "../components/Task";
 export default {
   name: "List",
   props: ["listData"],
@@ -39,12 +40,20 @@ export default {
       }
     };
   },
+  computed: {
+    tasks() {
+      return this.$store.state.tasks;
+    }
+  },
   methods: {
     addTask() {
       let task = { ...this.newTask };
       this.$store.dispatch("addTask", task);
       this.newTask.description = "";
     }
+  },
+  components: {
+    taskComponent
   }
 };
 </script>

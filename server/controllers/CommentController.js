@@ -29,7 +29,11 @@ export default class ListController {
 
   async edit(req, res, next) {
     try {
-      let data = await _commentService.edit(req.params.id, req.body);
+      let data = await _commentService.edit(
+        req.params.id,
+        req.session.uid,
+        req.body
+      );
       return res.send(data);
     } catch (error) {
       next(error);
