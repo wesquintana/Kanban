@@ -38,6 +38,9 @@ class ListService {
     }
     return data;
   }
+  get repository() {
+    return _repository;
+  }
 }
 
 const _listService = new ListService();

@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import _commentService from "../services/CommentService";
+const _commentRepo = _commentService.repository;
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
@@ -15,9 +17,7 @@ const Task = new Schema(
 //CASCADE ON DELETE
 Task.pre("deleteMany", function(next) {
   //lets find all the tasks and remove them
-  Promise.all([
-    //_taskService.deleteMany({ listId: this._conditions_id }),
-  ])
+  Promise.all([_commentRepo.deleteMany({ taskId: this._conditions._id })])
     .then(() => next())
     .catch(err => next(err));
 });
@@ -25,9 +25,7 @@ Task.pre("deleteMany", function(next) {
 //CASCADE ON DELETE
 Task.pre("findOneAndRemove", function(next) {
   //lets find all the tasks and remove them
-  Promise.all([
-    // _taskRepo.deleteMany({ boardId: this._conditions._id })
-  ])
+  Promise.all([_commentRepo.deleteMany({ taskId: this._conditions._id })])
     .then(() => next())
     .catch(err => next(err));
 });

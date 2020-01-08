@@ -35,6 +35,9 @@ class CommentService {
     }
     return data;
   }
+  get repository() {
+    return _repository;
+  }
 }
 
 const _commentService = new CommentService();

@@ -38,6 +38,9 @@ class TaskService {
     }
     return data;
   }
+  get repository() {
+    return _repository;
+  }
 }
 
 const _taskService = new TaskService();
