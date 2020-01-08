@@ -61,6 +61,12 @@ export default new Vuex.Store({
     addComment(state, comment) {
       state.comments[comment.taskId].push(comment);
     },
+    removeResourceFromArray(state, payload) {
+      let index = state[payload.name].findIndex(
+        resource => resource._id == payload.id
+      );
+      state[payload.name].splice(index, 1);
+    },
     removeResource(state, payload) {
       let index = state[payload.name][payload.parentId].findIndex(
         resource => resource._id == payload.id
@@ -101,8 +107,16 @@ export default new Vuex.Store({
     },
     async deleteResourceById({ commit, dispatch }, payload) {
       try {
-        api.delete(payload.name + "/" + payload.id);
+        await api.delete(payload.name + "/" + payload.id);
         commit("removeResource", payload);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async removeResourceFromArray({ commit, dispatch }, payload) {
+      try {
+        await api.delete(payload.name + "/" + payload.id);
+        commit("removeResourceFromArray", payload);
       } catch (error) {
         console.error(error);
       }

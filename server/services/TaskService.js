@@ -31,6 +31,9 @@ class TaskService {
     }
     return data;
   }
+  async deleteMany(list) {
+    let data = await _repository.deleteMany(list);
+  }
   async getTasksByListId(id, userId) {
     let data = await _repository.find({ listId: id, authorId: userId });
     if (!data) {

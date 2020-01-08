@@ -3,6 +3,7 @@
     {{listData.title}}
     <div class="row border">
       <div class="col-12">
+        <i @click="deleteList" class="far fa-times-circle"></i>
         <form @submit.prevent="addTask">
           <div class="form-group">
             <input
@@ -50,6 +51,12 @@ export default {
       let task = { ...this.newTask };
       this.$store.dispatch("addTask", task);
       this.newTask.description = "";
+    },
+    deleteList() {
+      this.$store.dispatch("removeResourceFromArray", {
+        name: "lists",
+        id: this.listData._id
+      });
     }
   },
   components: {

@@ -31,6 +31,9 @@ class ListService {
     }
     return data;
   }
+  async deleteMany(board) {
+    let data = await _repository.deleteMany(board);
+  }
   async getListsByBoardId(id, userId) {
     let data = await _repository.find({ boardId: id, authorId: userId });
     if (!data) {

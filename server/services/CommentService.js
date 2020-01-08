@@ -28,6 +28,9 @@ class CommentService {
     }
     return data;
   }
+  async deleteMany(task) {
+    let data = await _repository.deleteMany(task);
+  }
   async getCommentByTaskId(id) {
     let data = await _repository.find({ taskId: id });
     if (!data) {

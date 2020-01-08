@@ -40,7 +40,9 @@ export default {
       newComment: {
         content: "",
         authorId: this.$store.state.user._id,
-        taskId: this.taskData._id
+        taskId: this.taskData._id,
+        boardId: this.taskData.boardId,
+        listId: this.taskData.listId
       }
     };
   },

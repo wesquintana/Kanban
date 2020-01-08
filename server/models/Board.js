@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import _listService from "../services/ListService";
-const _listRepo = _listService.repository;
+import _taskService from "../services/TaskService";
+import _commentService from "../services/CommentService";
 let Schema = mongoose.Schema;
 let ObjectId = Schema.Types.ObjectId;
 
@@ -16,9 +17,12 @@ const Board = new Schema(
 //CASCADE ON DELETE
 Board.pre("findOneAndRemove", function(next) {
   //lets find all the lists and remove them
-  Promise.all([_listRepo.deleteMany({ boardId: this._conditions._id })])
+  Promise.all([
+    _listService.deleteMany({ boardId: this._conditions._id }),
+    _taskService.deleteMany({ boardId: this._conditions._id }),
+    _commentService.deleteMany({ boardId: this._conditions._id })
+  ])
     .then(() => next())
     .catch(err => next(err));
 });
-
 export default Board;
