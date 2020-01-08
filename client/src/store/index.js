@@ -59,7 +59,7 @@ export default new Vuex.Store({
       state.tasks[task.listId].push(task);
     },
     addComment(state, comment) {
-      state.comments[comment.listId].push(comment);
+      state.comments[comment.taskId].push(comment);
     },
     removeResource(state, payload) {
       let index = state[payload.name][payload.parentId].findIndex(

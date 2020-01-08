@@ -1,7 +1,7 @@
 <template>
   <div class="list">
     {{listData.title}}
-    <div class="row">
+    <div class="row border">
       <div class="col-12">
         <form @submit.prevent="addTask">
           <div class="form-group">

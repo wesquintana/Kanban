@@ -1,8 +1,10 @@
 <template>
   <div class="task">
     {{ taskData.description }}
-    <div class="row">
+    <div class="row border">
       <div class="col-12">
+        <i @click="deleteTask" class="far fa-times-circle"></i>
+
         <form @submit.prevent="addComment">
           <div class="form-group">
             <input
@@ -21,7 +23,7 @@
       v-for="comment in comments"
       :key="comment._id"
       :commentData="comment"
-      class="row"
+      class="row border"
     />
   </div>
 </template>
@@ -52,6 +54,13 @@ export default {
       let comment = { ...this.newComment };
       this.$store.dispatch("addComment", comment);
       this.newComment.content = "";
+    },
+    deleteTask() {
+      this.$store.dispatch("deleteResourceById", {
+        name: "tasks",
+        id: this.taskData._id,
+        parentId: this.taskData.listId
+      });
     }
   },
   components: {
