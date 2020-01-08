@@ -60,6 +60,12 @@ export default new Vuex.Store({
     },
     addComment(state, comment) {
       state.comments[comment.listId].push(comment);
+    },
+    removeResource(state, payload) {
+      let index = state[payload.name][payload.parentId].findIndex(
+        resource => resource._id == payload.id
+      );
+      state[payload.name][payload.parentId].splice(index, 1);
     }
   },
   actions: {
@@ -91,6 +97,14 @@ export default new Vuex.Store({
         router.push({ name: "login" });
       } catch (e) {
         console.warn(e.message);
+      }
+    },
+    async deleteResourceById({ commit, dispatch }, payload) {
+      try {
+        api.delete(payload.name + "/" + payload.id);
+        commit("removeResource", payload);
+      } catch (error) {
+        console.error(error);
       }
     }
     //#endregion

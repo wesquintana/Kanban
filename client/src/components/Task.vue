@@ -17,7 +17,12 @@
         </form>
       </div>
     </div>
-    <comment-component v-for="comment in comments" :key="comment._id" :commentData="comment" />
+    <comment-component
+      v-for="comment in comments"
+      :key="comment._id"
+      :commentData="comment"
+      class="row"
+    />
   </div>
 </template>
 <script>
