@@ -19,7 +19,6 @@ export default {
     },
     async getTasksByListId({ commit, dispatch }, id) {
       let data = await _api.get("lists/" + id + "/tasks");
-      debugger;
       commit("setTasks", { data: data.data, listId: id });
     }
   }

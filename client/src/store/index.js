@@ -33,7 +33,7 @@ export default new Vuex.Store({
     activeBoard: {},
     lists: [],
     tasks: {},
-    comments: []
+    comments: {}
   },
   mutations: {
     setResource(state, payload) {
@@ -44,6 +44,9 @@ export default new Vuex.Store({
     },
     setTasks(state, payload) {
       Vue.set(state.tasks, payload.listId, payload.data);
+    },
+    setComments(state, payload) {
+      Vue.set(state.comments, payload.taskId, payload.data);
     },
     addBoard(state, board) {
       state.activeBoard = board;
@@ -56,7 +59,7 @@ export default new Vuex.Store({
       state.tasks[task.listId].push(task);
     },
     addComment(state, comment) {
-      state.comments.push(comment);
+      state.comments[comment.listId].push(comment);
     }
   },
   actions: {

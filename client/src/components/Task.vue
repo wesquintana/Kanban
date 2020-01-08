@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     comments() {
-      return this.$store.state.comments;
+      return this.$store.state.comments[this.newComment.taskId] || [];
     }
   },
   methods: {
