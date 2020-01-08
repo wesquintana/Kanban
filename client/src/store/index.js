@@ -32,7 +32,7 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: [],
+    tasks: {},
     comments: []
   },
   mutations: {
@@ -42,6 +42,9 @@ export default new Vuex.Store({
     setUser(state, user) {
       state.user = user;
     },
+    setTasks(state, payload) {
+      Vue.set(state.tasks, payload.listId, payload.data);
+    },
     addBoard(state, board) {
       state.activeBoard = board;
       state.boards.push(board);
@@ -50,7 +53,7 @@ export default new Vuex.Store({
       state.lists.push(list);
     },
     addTask(state, task) {
-      state.tasks.push(task);
+      state.tasks[task.listId].push(task);
     },
     addComment(state, comment) {
       state.comments.push(comment);
