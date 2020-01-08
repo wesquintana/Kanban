@@ -6,6 +6,7 @@ import AuthService from "../AuthService";
 import boardModule from "./boardModule";
 import listModule from "./listModule";
 import taskModule from "./taskModule";
+import commentModule from "./commentModule";
 Vue.use(Vuex);
 
 //Allows axios to work locally or live
@@ -23,14 +24,16 @@ export default new Vuex.Store({
   modules: {
     boardModule,
     listModule,
-    taskModule
+    taskModule,
+    commentModule
   },
   state: {
     user: {},
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: []
+    tasks: [],
+    comments: []
   },
   mutations: {
     setResource(state, payload) {
@@ -48,6 +51,9 @@ export default new Vuex.Store({
     },
     addTask(state, task) {
       state.tasks.push(task);
+    },
+    addComment(state, comment) {
+      state.comments.push(comment);
     }
   },
   actions: {
