@@ -1,4 +1,5 @@
 import axios from "axios";
+import Router from "../router";
 let _api = axios.create({
   baseURL: "http://localhost:3000/api/boards",
   timeout: 3000,
@@ -12,15 +13,17 @@ export default {
         commit("setResource", { resource: "boards", data: res.data });
       });
     },
-    addBoard({ commit, dispatch }, boardData) {
-      _api
-        .post("", boardData)
-        .then(serverBoard => {
-          commit("addBoard", serverBoard.data);
-        })
-        .catch(err => {
-          console.error(err);
+    async addBoard({ commit, dispatch }, boardData) {
+      try {
+        let data = await _api.post("", boardData);
+        commit("addBoard", data.data);
+        Router.push({
+          name: "board",
+          params: { boardId: data.data._id }
         });
+      } catch (error) {
+        console.error(error);
+      }
     },
     async getBoardById({ commit, dispatch }, id) {
       let data = await _api.get(id);

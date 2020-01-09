@@ -35,12 +35,7 @@ export default {
   methods: {
     addBoard() {
       this.$store.dispatch("addBoard", this.newBoard);
-      let activeBoardId = this.$store.state.activeBoard._id;
       this.newBoard = { title: "", description: "" };
-      this.$router.push({
-        name: "board",
-        params: { boardId: activeBoardId }
-      });
     },
     deleteBoard(boardId) {
       this.$store.dispatch("removeResourceFromArray", {
