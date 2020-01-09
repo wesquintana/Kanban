@@ -3,7 +3,17 @@
     {{listData.title}}
     <div class="row border">
       <div class="col-12">
-        <i @click="deleteList" class="far fa-times-circle"></i>
+        <div class="text-right">
+          <i @click="deleteList" class="far fa-times-circle"></i>
+        </div>
+        <div class="row">
+          <task-component
+            v-for="task in tasks"
+            :key="task._id"
+            :taskData="task"
+            class="col-10 mb-2 mr-auto ml-auto"
+          />
+        </div>
         <form @submit.prevent="addTask">
           <div class="form-group">
             <input
@@ -17,9 +27,6 @@
           <button class="btn button btn-primary">New Task</button>
         </form>
       </div>
-    </div>
-    <div class="row">
-      <task-component v-for="task in tasks" :key="task._id" :taskData="task" class="col-10 m-auto" />
     </div>
   </div>
 </template>

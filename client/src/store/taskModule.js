@@ -20,6 +20,13 @@ export default {
     async getTasksByListId({ commit, dispatch }, id) {
       let data = await _api.get("lists/" + id + "/tasks");
       commit("setTasks", { data: data.data, listId: id });
+    },
+    async moveTask({ commit, dispatch }, payload) {
+      let data = await _api.put("tasks/" + payload.id, {
+        listId: payload.listId
+      });
+      commit("addTask", data.data);
+      commit("removeResource", payload);
     }
   }
 };

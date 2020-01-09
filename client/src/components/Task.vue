@@ -3,8 +3,17 @@
     {{ taskData.description }}
     <div class="row border">
       <div class="col-12">
-        <i @click="deleteTask" class="far fa-times-circle"></i>
-
+        <div class="text-right">
+          <i @click="deleteTask" class="far fa-times-circle"></i>
+        </div>
+        <form @submit.prevent="moveTask">
+          <div class="form-group">
+            <select v-model="selected">
+              <option v-for="list in lists" :key="list._id" v-bind:value="list._id">{{ list.title }}</option>
+            </select>
+          </div>
+          <button class="btn btn-info btn-sm">confirm</button>
+        </form>
         <form @submit.prevent="addComment">
           <div class="form-group">
             <input
@@ -43,10 +52,14 @@ export default {
         taskId: this.taskData._id,
         boardId: this.taskData.boardId,
         listId: this.taskData.listId
-      }
+      },
+      selected: ""
     };
   },
   computed: {
+    lists() {
+      return this.$store.state.lists;
+    },
     comments() {
       return this.$store.state.comments[this.newComment.taskId] || [];
     }
@@ -63,6 +76,15 @@ export default {
         id: this.taskData._id,
         parentId: this.taskData.listId
       });
+    },
+    moveTask() {
+      this.$store.dispatch("moveTask", {
+        id: this.taskData._id,
+        listId: this.selected,
+        parentId: this.taskData.listId,
+        name: "tasks"
+      });
+      this.selected = "";
     }
   },
   components: {

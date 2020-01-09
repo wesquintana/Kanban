@@ -19,6 +19,19 @@ class CommentService {
     }
     return data;
   }
+  async updateMany(update) {
+    let data = await _repository.updateMany(
+      { taskId: update.taskId },
+      update.update,
+      {
+        new: true
+      }
+    );
+    if (!data) {
+      throw new ApiError("Invalid ID", 400);
+    }
+    return data;
+  }
   async delete(id, userId) {
     let data = await _repository.findOneAndRemove({
       _id: id

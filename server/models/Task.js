@@ -29,4 +29,16 @@ Task.pre("findOneAndRemove", function(next) {
     .catch(err => next(err));
 });
 
+Task.pre("findOneAndUpdate", function(next) {
+  Promise.all([
+    _commentService
+      .updateMany({
+        taskId: this._conditions._id,
+        update: this._conditions.update
+      })
+      .then(() => next())
+      .catch(err => next(err))
+  ]);
+});
+
 export default Task;
