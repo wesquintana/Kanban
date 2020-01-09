@@ -18,6 +18,7 @@ export default {
   name: "boards",
   mounted() {
     this.$store.dispatch("getBoards");
+    this.$store.dispatch("clearChildren");
   },
   data() {
     return {

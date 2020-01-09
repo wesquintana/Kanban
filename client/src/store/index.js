@@ -75,6 +75,12 @@ export default new Vuex.Store({
     },
     removeActiveBoard(state) {
       state.activeBoard = {};
+    },
+    clearChildren(state) {
+      state.activeBoard = {};
+      state.comments = {};
+      state.lists = [];
+      state.tasks = {};
     }
   },
   actions: {

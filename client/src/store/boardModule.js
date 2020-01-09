@@ -31,6 +31,9 @@ export default {
     },
     removeActiveBoard({ commit, dispatch }) {
       commit("removeActiveBoard");
+    },
+    clearChildren({ commit, dispatch }) {
+      commit("clearChildren");
     }
   }
 };
