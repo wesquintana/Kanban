@@ -1,12 +1,38 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="container-fluid">
+      <div class="row bg-primary">
+        <div class="col-6">
+          <router-link to="/" class="text-white">
+            <h1>Home</h1>
+          </router-link>
+        </div>
+        <div class="col-6">
+          <button
+            class="btn btn-light mt-2"
+            v-if="user.hasOwnProperty('name')"
+            @click="logout"
+          >Logout</button>
+        </div>
+      </div>
+    </div>
+    <router-view />
   </div>
 </template>
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  computed: {
+    user() {
+      return this.$store.state.user;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    }
+  }
 };
 </script>
 

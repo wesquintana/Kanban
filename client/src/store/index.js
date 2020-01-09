@@ -81,6 +81,14 @@ export default new Vuex.Store({
       state.comments = {};
       state.lists = [];
       state.tasks = {};
+    },
+    resetState(state) {
+      state.user = {};
+      state.boards = [];
+      state.activeBoard = {};
+      state.lists = [];
+      state.tasks = {};
+      state.comments = {};
     }
   },
   actions: {
