@@ -1,5 +1,6 @@
 import axios from "axios";
 import Router from "../router";
+import router from "../router";
 let _api = axios.create({
   baseURL: "http://localhost:3000/api/boards",
   timeout: 3000,
@@ -26,8 +27,14 @@ export default {
       }
     },
     async getBoardById({ commit, dispatch }, id) {
-      let data = await _api.get(id);
-      commit("setResource", { resource: "activeBoard", data: data.data });
+      try {
+        let data = await _api.get(id);
+        commit("setResource", { resource: "activeBoard", data: data.data });
+      } catch (error) {
+        Router.push({
+          name: "boards"
+        });
+      }
     },
     removeActiveBoard({ commit, dispatch }) {
       commit("removeActiveBoard");
