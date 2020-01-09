@@ -52,7 +52,6 @@ export default {
   mounted() {
     this.$store.dispatch("getBoardById", this.$route.params.boardId);
     this.$store.dispatch("getListsByBoardId", this.$route.params.boardId);
-    this.$store.dispatch("doesBoardExist", this.$route.params.boardId);
   },
   methods: {
     addList() {
