@@ -34,7 +34,7 @@ Task.pre("findOneAndUpdate", function(next) {
     _commentService
       .updateMany({
         taskId: this._conditions._id,
-        update: this._conditions.update
+        listId: this._update.listId
       })
       .then(() => next())
       .catch(err => next(err))

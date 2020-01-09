@@ -22,7 +22,7 @@ class CommentService {
   async updateMany(update) {
     let data = await _repository.updateMany(
       { taskId: update.taskId },
-      update.update,
+      { listId: update.listId },
       {
         new: true
       }
