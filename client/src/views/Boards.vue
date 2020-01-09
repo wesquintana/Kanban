@@ -8,6 +8,7 @@
     </form>
     <div v-for="board in boards" :key="board._id">
       <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+      <i @click="deleteBoard(board._id)" class="far fa-times-circle"></i>
     </div>
   </div>
 </template>
@@ -40,6 +41,13 @@ export default {
         name: "board",
         params: { boardId: activeBoardId }
       });
+    },
+    deleteBoard(boardId) {
+      this.$store.dispatch("removeResourceFromArray", {
+        name: "boards",
+        id: boardId
+      });
+      this.$store.dispatch("removeActiveBoard");
     }
   }
 };

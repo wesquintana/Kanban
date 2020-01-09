@@ -72,6 +72,9 @@ export default new Vuex.Store({
         resource => resource._id == payload.id
       );
       state[payload.name][payload.parentId].splice(index, 1);
+    },
+    removeActiveBoard(state) {
+      state.activeBoard = {};
     }
   },
   actions: {

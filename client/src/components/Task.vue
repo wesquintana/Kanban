@@ -8,7 +8,7 @@
         </div>
         <form @submit.prevent="moveTask">
           <div class="form-group">
-            <select v-model="selected">
+            <select v-model="selected" required>
               <option v-for="list in lists" :key="list._id" v-bind:value="list._id">{{ list.title }}</option>
             </select>
           </div>

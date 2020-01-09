@@ -25,6 +25,9 @@ export default {
     async getBoardById({ commit, dispatch }, id) {
       let data = await _api.get(id);
       commit("setResource", { resource: "activeBoard", data: data.data });
+    },
+    removeActiveBoard({ commit, dispatch }) {
+      commit("removeActiveBoard");
     }
   }
 };
