@@ -3,11 +3,11 @@
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
         <div class="card" style="width: 24rem">
-          <div class="card-body bg-secondary">
+          <div class="card-body bg-secondary rounded">
             <div class="text-right">
-              <i @click="deleteTask" class="far fa-times-circle"></i>
+              <i @click="deleteTask" class="far fa-times-circle text-danger"></i>
             </div>
-            <h4 class="textlight">{{ taskData.description }}</h4>
+            <h4 class="text-light">{{ taskData.description }}</h4>
             <form @submit.prevent="moveTask">
               <div class="form-group">
                 <select v-model="selected" required>
@@ -33,16 +33,16 @@
               </div>
               <button class="btn button btn-primary">New Comment</button>
             </form>
+            <comment-component
+              v-for="comment in comments"
+              :key="comment._id"
+              :commentData="comment"
+              class="row"
+            />
           </div>
         </div>
       </div>
     </div>
-    <comment-component
-      v-for="comment in comments"
-      :key="comment._id"
-      :commentData="comment"
-      class="row border"
-    />
   </div>
 </template>
 <script>

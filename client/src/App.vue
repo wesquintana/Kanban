@@ -2,12 +2,12 @@
   <div id="app">
     <div class="container-fluid">
       <div class="row bg-info">
-        <div class="col-6">
-          <h1 class="title">
+        <div class="col-4">
+          <h1 class="title text-left">
             <router-link to="/" class="text-light">Nabnak</router-link>
           </h1>
         </div>
-        <div class="col-6">
+        <div class="col-4 offset-4 text-right">
           <button
             class="btn btn-light mt-2"
             v-if="user.hasOwnProperty('name')"

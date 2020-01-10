@@ -1,8 +1,8 @@
 <template>
   <div class="comment">
-    <div class="col-12 d-flex justify-content-between">
+    <div class="col-12 d-flex justify-content-between text-light mt-2">
       {{commentData.content}}
-      <i @click="deleteComment" class="far fa-times-circle"></i>
+      <i @click="deleteComment" class="fas fa-times text-danger"></i>
     </div>
   </div>
 </template>
@@ -24,7 +24,10 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
+i {
+  font-size: 1.2rem;
+}
 i:hover {
   cursor: pointer;
 }

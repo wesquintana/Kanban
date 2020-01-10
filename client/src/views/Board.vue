@@ -82,21 +82,7 @@ export default {
   flex-wrap: nowrap;
   height: 74vh;
 }
-.custom-list-item {
-  display: inline-block;
-  float: none;
-  overflow-y: auto;
-}
-.custom-list-item::-webkit-scrollbar {
-  width: 8px;
-}
-.custom-list-item::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.7);
-  border-radius: 4px;
-}
-.custom-list-item::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(100, 100, 100, 0.9);
-}
+
 .scroll-x::-webkit-scrollbar {
   height: 8px;
 }
