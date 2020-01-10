@@ -2,7 +2,7 @@ import axios from "axios";
 import Router from "../router";
 import router from "../router";
 let _api = axios.create({
-  baseURL: "http://localhost:3000/api/boards",
+  baseURL: "http://nabnak.herokuapp.com/#/api/boards",
   timeout: 3000,
   withCredentials: true
 });
