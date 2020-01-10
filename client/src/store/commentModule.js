@@ -1,6 +1,6 @@
 import axios from "axios";
 let _api = axios.create({
-  baseURL: "http://nabnak.herokuapp.com/#/api",
+  baseURL: "http://nabnak.herokuapp.com/api",
   timeout: 3000,
   withCredentials: true
 });
