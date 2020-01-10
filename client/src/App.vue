@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <div class="container-fluid">
-      <div class="row bg-primary">
+      <div class="row bg-info">
         <div class="col-6">
-          <router-link to="/" class="text-white">
-            <h1>Home</h1>
-          </router-link>
+          <h1 class="title">
+            <router-link to="/" class="text-light">Nabnak</router-link>
+          </h1>
         </div>
         <div class="col-6">
           <button
@@ -56,5 +56,8 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.title {
+  font-family: "Shrikhand", cursive;
 }
 </style>

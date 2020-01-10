@@ -1,5 +1,5 @@
 <template>
-  <main class="board container-fluid">
+  <main class="board container-fluid bg-light">
     <div class="row">
       <div class="col-12">
         <h1>{{ board.title }}</h1>

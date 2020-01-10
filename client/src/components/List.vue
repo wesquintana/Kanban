@@ -1,31 +1,36 @@
 <template>
   <div class="list">
-    {{listData.title}}
-    <div class="row border">
-      <div class="col-12">
-        <div class="text-right">
-          <i @click="deleteList" class="far fa-times-circle"></i>
-        </div>
-        <div class="row">
-          <task-component
-            v-for="task in tasks"
-            :key="task._id"
-            :taskData="task"
-            class="col-10 mb-2 mr-auto ml-auto"
-          />
-        </div>
-        <form @submit.prevent="addTask">
-          <div class="form-group">
-            <input
-              v-model="newTask.description"
-              type="text"
-              class="form-control"
-              placeholder="task name..."
-              required
-            />
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <div class="card" style="width: 32rem">
+          <div class="card-body bg-info">
+            <div class="card-text text-right text-danger">
+              <i @click="deleteList" class="far fa-times-circle"></i>
+            </div>
+            <h4 class="card-title text-light">{{listData.title}}</h4>
+
+            <div class="row">
+              <task-component
+                v-for="task in tasks"
+                :key="task._id"
+                :taskData="task"
+                class="col-10 mb-2 mr-auto ml-auto"
+              />
+            </div>
+            <form @submit.prevent="addTask">
+              <div class="form-group">
+                <input
+                  v-model="newTask.description"
+                  type="text"
+                  class="form-control"
+                  placeholder="task name..."
+                  required
+                />
+              </div>
+              <button class="btn button btn-primary">New Task</button>
+            </form>
           </div>
-          <button class="btn button btn-primary">New Task</button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -72,4 +77,7 @@ export default {
 };
 </script>
 <style>
+i {
+  font-size: 1.5rem;
+}
 </style>

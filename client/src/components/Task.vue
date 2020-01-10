@@ -1,31 +1,40 @@
 <template>
   <div class="task">
-    {{ taskData.description }}
-    <div class="row border">
-      <div class="col-12">
-        <div class="text-right">
-          <i @click="deleteTask" class="far fa-times-circle"></i>
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <div class="card" style="width: 24rem">
+          <div class="card-body bg-secondary">
+            <div class="text-right">
+              <i @click="deleteTask" class="far fa-times-circle"></i>
+            </div>
+            <h4 class="textlight">{{ taskData.description }}</h4>
+            <form @submit.prevent="moveTask">
+              <div class="form-group">
+                <select v-model="selected" required>
+                  <option
+                    v-for="list in lists"
+                    :key="list._id"
+                    v-bind:value="list._id"
+                    v-show="list._id != taskData.listId"
+                  >{{ list.title }}</option>
+                </select>
+              </div>
+              <button class="btn btn-info btn-sm">confirm</button>
+            </form>
+            <form @submit.prevent="addComment">
+              <div class="form-group">
+                <input
+                  v-model="newComment.content"
+                  type="text"
+                  class="form-control"
+                  placeholder="comment name..."
+                  required
+                />
+              </div>
+              <button class="btn button btn-primary">New Comment</button>
+            </form>
+          </div>
         </div>
-        <form @submit.prevent="moveTask">
-          <div class="form-group">
-            <select v-model="selected" required>
-              <option v-for="list in lists" :key="list._id" v-bind:value="list._id">{{ list.title }}</option>
-            </select>
-          </div>
-          <button class="btn btn-info btn-sm">confirm</button>
-        </form>
-        <form @submit.prevent="addComment">
-          <div class="form-group">
-            <input
-              v-model="newComment.content"
-              type="text"
-              class="form-control"
-              placeholder="comment name..."
-              required
-            />
-          </div>
-          <button class="btn button btn-primary">New Comment</button>
-        </form>
       </div>
     </div>
     <comment-component
