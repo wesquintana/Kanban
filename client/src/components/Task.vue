@@ -2,7 +2,7 @@
   <div class="task">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <div class="card" style="width: 24rem">
+        <div class="card bg-info" style="width: 24rem">
           <div class="card-body bg-secondary rounded">
             <div class="text-right">
               <i

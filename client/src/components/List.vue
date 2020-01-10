@@ -18,7 +18,7 @@
               />
             </div>
             <form @submit.prevent="addTask">
-              <div class="form-group">
+              <div class="form-group d-inline-flex">
                 <input
                   v-model="newTask.description"
                   type="text"

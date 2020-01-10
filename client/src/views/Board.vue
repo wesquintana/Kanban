@@ -8,8 +8,8 @@
     </div>
     <div class="row d-flex justify-content-center">
       <div class="col-4">
-        <form @submit.prevent="addList">
-          <div class="form-group">
+        <form class="mb-2" @submit.prevent="addList">
+          <div class="form-group d-inline-flex">
             <input
               v-model="newList.title"
               type="text"
@@ -80,7 +80,7 @@ export default {
   overflow-x: auto;
   white-space: nowrap;
   flex-wrap: nowrap;
-  height: 74vh;
+  height: 77vh;
 }
 
 .scroll-x::-webkit-scrollbar {
