@@ -1,5 +1,5 @@
 <template>
-  <main class="board container">
+  <main class="board container-fluid">
     <div class="row">
       <div class="col-12">
         <h1>{{ board.title }}</h1>
@@ -23,12 +23,16 @@
       </div>
     </div>
     <div class="row">
-      <list-component
-        class="col-4 custom-list-item"
-        v-for="list in lists"
-        :key="list._id"
-        :listData="list"
-      />
+      <div class="col-11 m-auto">
+        <div class="row scroll-x justify-content-between">
+          <list-component
+            class="col-4 custom-list-item mr-2 ml-2"
+            v-for="list in lists"
+            :key="list._id"
+            :listData="list"
+          />
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -71,3 +75,36 @@ export default {
   props: ["boardId"]
 };
 </script>
+<style>
+.scroll-x {
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  height: 74vh;
+}
+.custom-list-item {
+  display: inline-block;
+  float: none;
+  overflow-y: auto;
+}
+.custom-list-item::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-list-item::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.7);
+  border-radius: 4px;
+}
+.custom-list-item::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.9);
+}
+.scroll-x::-webkit-scrollbar {
+  height: 8px;
+}
+.scroll-x::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.7);
+  border-radius: 4px;
+}
+.scroll-x::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 100, 100, 0.9);
+}
+</style>
