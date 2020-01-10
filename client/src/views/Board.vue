@@ -26,7 +26,7 @@
       <div class="col-11 m-auto">
         <div class="row scroll-x justify-content-between">
           <list-component
-            class="col-4 custom-list-item mr-2 ml-2"
+            class="col-12 col-md-6 col-lg-4 custom-list-item mr-2 ml-2"
             v-for="list in lists"
             :key="list._id"
             :listData="list"

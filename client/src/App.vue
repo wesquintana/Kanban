@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div class="container-fluid">
+    <div class="container-fluid ">
       <div class="row bg-info">
-        <div class="col-4">
+        <div class="col-4 header">
           <h1 class="title text-left">
             <router-link to="/" class="text-light">Nabnak</router-link>
           </h1>
@@ -12,7 +12,9 @@
             class="btn btn-light mt-2"
             v-if="user.hasOwnProperty('name')"
             @click="logout"
-          >Logout</button>
+          >
+            Logout
+          </button>
         </div>
       </div>
     </div>
@@ -59,5 +61,11 @@ export default {
 }
 .title {
   font-family: "Shrikhand", cursive;
+}
+i:hover {
+  cursor: pointer;
+}
+.header {
+  height: 7vh;
 }
 </style>

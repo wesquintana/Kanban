@@ -1,7 +1,7 @@
 <template>
   <div class="comment">
     <div class="col-12 d-flex justify-content-between text-light mt-2">
-      {{commentData.content}}
+      {{ commentData.content }}
       <i @click="deleteComment" class="fas fa-times text-danger"></i>
     </div>
   </div>

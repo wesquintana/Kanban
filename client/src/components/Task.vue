@@ -5,7 +5,10 @@
         <div class="card" style="width: 24rem">
           <div class="card-body bg-secondary rounded">
             <div class="text-right">
-              <i @click="deleteTask" class="far fa-times-circle text-danger"></i>
+              <i
+                @click="deleteTask"
+                class="far fa-times-circle text-danger"
+              ></i>
             </div>
             <h4 class="text-light">{{ taskData.description }}</h4>
             <form @submit.prevent="moveTask">
@@ -16,7 +19,8 @@
                     :key="list._id"
                     v-bind:value="list._id"
                     v-show="list._id != taskData.listId"
-                  >{{ list.title }}</option>
+                    >{{ list.title }}</option
+                  >
                 </select>
               </div>
               <button class="btn btn-info btn-sm">confirm</button>
@@ -101,5 +105,4 @@ export default {
   }
 };
 </script>
-<style>
-</style>
+<style></style>

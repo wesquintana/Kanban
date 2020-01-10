@@ -7,7 +7,7 @@
             <div class="card-text text-right text-danger">
               <i @click="deleteList" class="far fa-times-circle"></i>
             </div>
-            <h4 class="card-title text-light">{{listData.title}}</h4>
+            <h4 class="card-title text-light">{{ listData.title }}</h4>
 
             <div class="row">
               <task-component
@@ -37,6 +37,7 @@
 </template>
 <script>
 import taskComponent from "../components/Task";
+import Swal from "sweetalert2";
 export default {
   name: "List",
   props: ["listData"],
@@ -65,9 +66,22 @@ export default {
       this.newTask.description = "";
     },
     deleteList() {
-      this.$store.dispatch("removeResourceFromArray", {
-        name: "lists",
-        id: this.listData._id
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085D6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(result => {
+        if (result.value) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          this.$store.dispatch("removeResourceFromArray", {
+            name: "lists",
+            id: this.listData._id
+          });
+        }
       });
     }
   },
