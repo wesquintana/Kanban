@@ -1,28 +1,49 @@
 <template>
   <div class="boards container-fluid bg-light">
-    <div class="row">
-      <div class="col-12">
+    <div class="row d-flex justify-content-center">
+      <div class="col-3">
         <h2>Boards</h2>
         <form @submit.prevent="addBoard">
-          <input
-            type="text"
-            placeholder="title"
-            v-model="newBoard.title"
-            required
-          />
-          <input
-            type="text"
-            placeholder="description"
-            v-model="newBoard.description"
-          />
-          <button type="submit">Create Board</button>
+          <div class="form-group">
+            <input
+              type="text"
+              placeholder="title"
+              class="form-control"
+              v-model="newBoard.title"
+              maxlength="25"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="description"
+              v-model="newBoard.description"
+            />
+          </div>
+
+          <button class="btn button btn-success" type="submit">
+            Create Board
+          </button>
         </form>
-        <div v-for="board in boards" :key="board._id">
-          <router-link
-            :to="{ name: 'board', params: { boardId: board._id } }"
-            >{{ board.title }}</router-link
-          >
-          <i @click="deleteBoard(board._id)" class="far fa-times-circle"></i>
+        <div
+          v-for="board in boards"
+          :key="board._id"
+          class="d-flex justify-content-between mt-2"
+        >
+          <h5>
+            <router-link
+              :to="{ name: 'board', params: { boardId: board._id } }"
+              >{{ board.title }}</router-link
+            >
+          </h5>
+          <h5>
+            <i
+              @click="deleteBoard(board._id)"
+              class="far fa-times-circle delete-board text-danger"
+            ></i>
+          </h5>
         </div>
       </div>
     </div>
@@ -79,7 +100,10 @@ export default {
 };
 </script>
 <style>
+.delete-board {
+  font-size: 1.2rem;
+}
 .boards {
-  height: 93vh;
+  height: 94vh;
 }
 </style>

@@ -66,6 +66,6 @@ i:hover {
   cursor: pointer;
 }
 .header {
-  height: 7vh;
+  height: 6vh;
 }
 </style>
